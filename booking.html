@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование — MOUNTAIN ESCAPE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">MOUNTAIN ESCAPE</div>
+
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="houses.html">Домики</a>
+        <a href="booking.html">Бронирование</a>
+    </nav>
+</header>
+
+<section class="page-title">
+    <p class="small-title">ТВОЁ ПУТЕШЕСТВИЕ</p>
+    <h1>БРОНИРОВАНИЕ</h1>
+    <p>Заполни форму и начни планировать свой отдых.</p>
+</section>
+
+<section class="booking">
+
+    <form id="bookingForm">
+
+        <label>Ваше имя</label>
+        <input type="text" placeholder="Введите имя" required>
+
+        <label>Номер телефона</label>
+        <input type="tel" placeholder="+7 (___) ___-__-__" required>
+
+        <label>Выберите домик</label>
+        <select id="house">
+            <option value="8500">Forest — 8 500 ₽</option>
+            <option value="11000">Peak — 11 000 ₽</option>
+            <option value="14500">A-Frame — 14 500 ₽</option>
+        </select>
+
+        <label>Количество ночей</label>
+        <input type="number" id="nights" min="1" value="1">
+
+        <div class="price">
+            ИТОГО: <span id="total">8 500</span> ₽
+        </div>
+
+        <button type="submit" class="button">Отправить заявку</button>
+
+    </form>
+
+</section>
+
+<section class="faq">
+    <h2>Частые вопросы</h2>
+
+    <details>
+        <summary>Во сколько заезд и выезд?</summary>
+        <p>Заезд с 14:00, выезд до 12:00.</p>
+    </details>
+
+    <details>
+        <summary>Можно ли приехать с животными?</summary>
+        <p>Возможность размещения с животными уточняется при бронировании.</p>
+    </details>
+
+    <details>
+        <summary>Что входит в стоимость?</summary>
+        <p>В стоимость входит проживание в выбранном домике.</p>
+    </details>
+</section>
+
+<footer>
+    <p>© 2026 MOUNTAIN ESCAPE</p>
+    <p>Отдыхай. Дыши. Наслаждайся.</p>
+</footer>
+
+<script>
+    let house = document.getElementById("house");
+    let nights = document.getElementById("nights");
+    let total = document.getElementById("total");
+
+    function calculatePrice() {
+        let price = Number(house.value);
+        let count = Number(nights.value);
+
+        if (count < 1) {
+            count = 1;
+            nights.value = 1;
+        }
+
+        total.textContent = (price * count).toLocaleString("ru-RU");
+    }
+
+    house.addEventListener("change", calculatePrice);
+    nights.addEventListener("input", calculatePrice);
+
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        alert("Спасибо! Ваша заявка отправлена.");
+    });
+</script>
+
+</body>
+</html>
